@@ -9,14 +9,17 @@ public class MyReplay : MonoBehaviour {
 	private int fileNum = 0;
 	public  GameObject[] modelList ;
 	public GameObject[] posList;
+	private int modelNum = 11;
 
 	public int fps = 30;
 	public float mstart=4.5f;
 	public AudioSource music = null;
 	private int frame=0;
+	private int maxFrame = 20;
 
 	private int flag=-1;
 	public FieldSet bg;
+	public bool RECORD = false;
 
 	// Use this for initialization
 	void Start () {
@@ -30,16 +33,34 @@ public class MyReplay : MonoBehaviour {
 		//get file list
 		string[] files = Directory.GetFiles("myRecord");
 		fileNum = files.Length;
-		if (fileNum >= 11) {
-			fileNum=11;
+
+
+		modelNum = posList.Length;
+		if (RECORD) {
+			modelNum--;
 		}
 
+		if (fileNum >= modelNum) {
+			fileNum=modelNum;
+		}
+
+
 		for(int i=0;i<fileNum;i++){
-			datas[i].load(files[i],modelList);
+			string fn = files[fileNum-1-i];
+			//print ("file "+fn);
+			datas[i].load(fn,modelList);
+			if(datas[i].getMaxFrame() < maxFrame){
+				maxFrame=datas[i].getMaxFrame();
+			}
 		}
 
 		for (int i=0; i<fileNum; i++) {
-			datas[i].getBody().transform.parent=posList[i].transform;
+			if(RECORD){
+				datas[i].getBody().transform.parent=posList[i+1].transform;
+			}
+			else{
+				datas[i].getBody().transform.parent=posList[i].transform;
+			}
 			datas [i].getBody().transform.localPosition = new Vector3 (0, 0, 0);
 
 		}
@@ -62,14 +83,14 @@ public class MyReplay : MonoBehaviour {
 			if (music != null) {
 					time = music.time;
 			}
-			int frame = getFrameFromSec (time);
+			frame = getFrameFromSec (time);
 			//print ("frame "+time);
 			for (int i=0; i<fileNum; i++) {
 					datas [i].run (frame);
 			}
 
 
-			if(time>20){
+			if(time>20 || time>maxFrame){
 			//if(time>music.clip.length){
 				music.time=0;
 				bg.setPlace();

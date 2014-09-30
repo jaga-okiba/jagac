@@ -57,6 +57,10 @@ public class MySensor : MonoBehaviour {
 		if (pos.Count < f) {
 			frame = pos.Count - 2;
 		}
+		if (frame < 0) {
+			frame = 0;
+		}
+		//print ("frame " + frame+"/"+pos.Count);
 		return pos[frame];
 	}
 	public Vector3 getRot(int f){
@@ -64,7 +68,12 @@ public class MySensor : MonoBehaviour {
 			if (pos.Count < f) {
 				frame = pos.Count - 2;
 			}
+			if (frame < 0) {
+				frame = 0;
+			}
 			return rot[frame];
 	}
-
+	public int getMaxTime(){
+		return maxTime;
+	}
 }

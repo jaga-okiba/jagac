@@ -7,7 +7,7 @@ public class MyKinectData : MonoBehaviour {
 	private string modelName;
 	public GameObject body;
 	private int frame;
-
+	private int maxFrame;
 	public static string[] bName = {
 		"SpineRoot","Spine2","HeadRoot","Head",
 		"LShoulder","LArmRoot","LForearm","LHand","LHandEff",
@@ -82,10 +82,20 @@ public class MyKinectData : MonoBehaviour {
 
 			}
 
+			maxFrame = sensor[0].getMaxTime();
+			for(int i=1;i<sensor.Length;i++){
+				if(maxFrame<sensor[i].getMaxTime()){
+					maxFrame = sensor[i].getMaxTime();
+				}
+			}
+
 			//datas.Add (sensor);
 			reader.Close();
 		}
 	
+	}
+	public int getMaxFrame(){
+		return maxFrame;
 	}
 	public int getBodyPartID(string n){
 		int id = -1;
