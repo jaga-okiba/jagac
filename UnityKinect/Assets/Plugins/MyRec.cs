@@ -61,6 +61,7 @@ public class MyRec : MonoBehaviour {
 			recTime=music.clip.length;
 		}
 
+
 	}
 
 	public void setBodys(int id){

@@ -10,6 +10,9 @@
 	ASS.zipを展開してMoCapとSoundをAssetsに入れる
 
 
+unityKinect_0_10_5
+	Playシーンでロードが終わるまで音楽の開始を待つ．
+
 unityKinect_0_10_4
 	Replayモードでなんか表示されないのを直す
 	(表示順の問題か？)

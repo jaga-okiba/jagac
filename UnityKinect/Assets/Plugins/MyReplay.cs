@@ -67,6 +67,8 @@ public class MyReplay : MonoBehaviour {
 		}
 		flag = 1;
 		print ("END LOAD");
+		music.Play ();
+
 	}
 
 	public int getFrameFromSec(float time){
@@ -82,12 +84,12 @@ public class MyReplay : MonoBehaviour {
 
 			float time = -1;
 			if (music != null) {
-					time = music.time;
+				time = music.time;
 			}
 			frame = getFrameFromSec (time);
 			//print ("frame "+time);
 			for (int i=0; i<fileNum; i++) {
-					datas [i].run (frame);
+				datas [i].run (frame);
 			}
 
 
