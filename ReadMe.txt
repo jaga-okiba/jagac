@@ -10,6 +10,10 @@
 	ASS.zipを展開してMoCapとSoundをAssetsに入れる
 
 
+unityKinect_0_10_4
+	Replayモードでなんか表示されないのを直す
+	(表示順の問題か？)
+
 unityKinect_0_10_3
 	Playモードでも背景に過去のキャラを置く
 

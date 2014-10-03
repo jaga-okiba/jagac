@@ -40,13 +40,14 @@ public class MyReplay : MonoBehaviour {
 			modelNum--;
 		}
 
-		if (fileNum >= modelNum) {
+
+		if (fileNum > modelNum) {
 			fileNum=modelNum;
 		}
 
 
 		for(int i=0;i<fileNum;i++){
-			string fn = files[fileNum-1-i];
+			string fn = files[datas.Length-1-i];
 			//print ("file "+fn);
 			datas[i].load(fn,modelList);
 			if(datas[i].getMaxFrame() < maxFrame){
