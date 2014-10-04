@@ -10,7 +10,7 @@ public class MyRec : MonoBehaviour {
 
 
 	public float delayTime=3;
-	private float recTime=20;
+	private float recTime=30;
 
 	private float time=0;
 	public GUIText guiCount;

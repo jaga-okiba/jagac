@@ -10,6 +10,29 @@
 	ASS.zipを展開してMoCapとSoundをAssetsに入れる
 
 
+unityKinect_0_10_9(2014 10 4 最新)
+	新キャラ登場
+unityKinect_0_10_8(2014 10 4)
+	統合
+
+
+unityKinect_0_10_7
+	猿田版
+
+unityKinect_0_10_6_shibat
+
+unityKinect_0_10_6_shibat
+	音楽の再生を修正
+		(listenerの近くに置くことにする)
+	再生時間を調整
+		MyReplayとMyRecでmaxTimeを実装
+	再生時のOutOfRangeエラーを飲み込む
+		MySensor
+	KeyBordとjoysticの双方に対応
+		MyReplayのGetButtonDownを修正
+		Edit -> ProjectSettings -> Input -> Jump
+			(Buffaloコントローラの 4ボタン )
+
 unityKinect_0_10_5
 	Playシーンでロードが終わるまで音楽の開始を待つ．
 

@@ -15,8 +15,8 @@ public class MyReplay : MonoBehaviour {
 	public float mstart=4.5f;
 	public AudioSource music = null;
 	private int frame=0;
-	private int maxFrame = 20;
-
+	private int maxFrame = -1;
+	private float maxTime = -1;
 	private int flag=-1;
 	public FieldSet bg;
 	public bool RECORD = false;
@@ -50,7 +50,7 @@ public class MyReplay : MonoBehaviour {
 			string fn = files[datas.Length-1-i];
 			//print ("file "+fn);
 			datas[i].load(fn,modelList);
-			if(datas[i].getMaxFrame() < maxFrame){
+			if(datas[i].getMaxFrame() < maxFrame || maxFrame==-1){
 				maxFrame=datas[i].getMaxFrame();
 			}
 		}
@@ -68,7 +68,9 @@ public class MyReplay : MonoBehaviour {
 		flag = 1;
 		print ("END LOAD");
 		music.Play ();
-
+		if (maxTime == -1) {
+			maxTime = music.clip.length;
+		}
 	}
 
 	public int getFrameFromSec(float time){
@@ -100,7 +102,8 @@ public class MyReplay : MonoBehaviour {
 			}
 
 
-			if (Input.GetKey(KeyCode.Space)){
+			//if (Input.GetKey(KeyCode.Space)){
+			if (Input.GetButtonDown("Jump")){
 				Application.LoadLevel("CharaSelect");
 			}
 
