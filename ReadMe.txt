@@ -1,14 +1,31 @@
 ﻿TODO
-	キネクトrec
-	過去の踊りを表示
-	カメラワーク
-		移動
-		アングル
-		キャラの表示具合
-	ボタンとか
+	プロジェクトの開き方
+	ASS.zipを展開(パスワードはサイボウズにて)してMoCapとSoundをAssetsに入れる
+		(Unity上ですることを推奨)
 
-	ASS.zipを展開してMoCapとSoundをAssetsに入れる
+	キャラクタへの追加方法
+		(1)	ReplaySceneを開き，シーン内のReplay -> modelListにキャラを追加
+				位置は[0,0,0]，回転[0,0,0]，スケール(おそらく)を合わせる
+				モデルの非アクティブにする(インスペクタでチェックを外す)
+		(2) ReplaySceneのmodelListをコピーし，PlaySceneへ移動シーンに張り付け
+				modelListをReplayの下へ入れる．
 
+				modelListをさらにコピーし，playerListに名前を変える．
+				playerListをSKinectFullの下へ．
+				playerListの各モデルに plugin/kinect/KinectModelControllerV2を設定
+					SWにKiect_Prefab，RootにモデルのRootを設定
+		(3) modelListをコピーし，CharaSelectSceneへ移動，modelListを貼り付け．
+				modelListをTurnTableの下へ．
+				modelListのサイズがなぜか [0.1, 0.1, 0.1]になっているので，
+				すべて0.2にしてサイズを合わせる．
+
+unityKinect_0_11_1
+	キャラ追加が容易になるように調整
+		CharaSelectScene
+			ControllerでmodelListを自動取得．
+		MyReplayでmodelListをgetするようにする(CharaSelectと同じmodelListを子に入れる)
+
+		AssetsのKinectをpluginへ移動(実行の都合)
 
 unityKinect_0_11_0
 	時間管理の回りを調整する．

@@ -7,8 +7,10 @@ using System.IO;
 public class MyReplay : MonoBehaviour {
 	private MyKinectData[] datas = new MyKinectData[15];
 	private int fileNum = 0;
-	public  GameObject[] modelList ;
+
+	//hogehoge
 	public GameObject[] posList;
+
 	private int modelNum = 11;
 
 	public int fps = 30;
@@ -20,11 +22,20 @@ public class MyReplay : MonoBehaviour {
 	public FieldSet bg;
 	public bool RECORD = false;
 
-	private float maxTime = -1;
+	private float maxTime = 30;
+
+	private  GameObject[] modelList ;
 
 	// Use this for initialization
 	void Start () {
-		//createList ();
+		//get model list
+		GameObject list = GameObject.Find ("modelList");
+		int chCnt = list.transform.childCount;
+		modelList = new GameObject[chCnt];
+		for (int i=0; i<chCnt; i++) {
+			modelList[i]=list.transform.GetChild(i).gameObject;
+			//print(modelList[i].name);
+		}
 
 
 		for (int i=0; i<datas.Length; i++) {
@@ -48,7 +59,7 @@ public class MyReplay : MonoBehaviour {
 
 
 		for(int i=0;i<fileNum;i++){
-			string fn = files[datas.Length-1-i];
+			string fn = files[files.Length-1-i];
 			//print ("file "+fn);
 			datas[i].load(fn,modelList);
 			if(datas[i].getMaxFrame() < maxFrame || maxFrame==-1){
@@ -69,7 +80,7 @@ public class MyReplay : MonoBehaviour {
 		flag = 1;
 		print ("END LOAD");
 		music.Play ();
-		if (maxTime == -1) {
+		if (maxTime == -1 || maxTime<music.clip.length) {
 			maxTime = music.clip.length;
 		}
 	}

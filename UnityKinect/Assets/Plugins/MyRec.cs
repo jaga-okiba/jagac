@@ -7,10 +7,8 @@ public class MyRec : MonoBehaviour {
 	public AudioSource music = null;
 	public MyReplay replay;
 
-
-
 	public float delayTime=3;
-	private float recTime=30;
+	private float recTime=-1;
 
 	private float time=0;
 	public GUIText guiCount;
@@ -18,7 +16,6 @@ public class MyRec : MonoBehaviour {
 
 	private int myState = -1;
 	private StreamWriter writer;
-	public GameObject[] target;
 	private GameObject[] bodys; // = new GameObject[25];
 	private string charaName;
 
@@ -31,12 +28,9 @@ public class MyRec : MonoBehaviour {
 		"LLegRoot","LShin","LRootFoot","LToe",
 		"RLegRoot","RShin","RRootFoot","RToe"
 	};
+	public GameObject target;
 
-
-	//public GameObject root;
-	
 	void Start () {
-		//guiCount.text=true;
 		this.renderer.material.color = Color.blue;
 
 		string name = PlayerPrefs.GetString("CharaName");
@@ -44,40 +38,38 @@ public class MyRec : MonoBehaviour {
 			name = "human_base";
 		}
 
-		int id = 0;
-		for(int i=0;i<target.Length;i++){
-			if(target[i].name==name){
-				target[i].SetActive(true);
-				id = i;
-			}
-			else{
-				target[i].SetActive(false);
+		GameObject list = GameObject.Find ("playerList");
+		int chCnt = list.transform.childCount;
+		for (int i=0; i<chCnt; i++) {
+			GameObject child = list.transform.GetChild(i).gameObject;
+			if(child.name==name){
+				//copy from list
+				target = (GameObject)Instantiate(child);
+				target.SetActive(true);
+				break;
 			}
 		}
 
+
 		charaName = name;
-		setBodys (id);
+		setBodys ();
+
 		//music is started by MyRelay.cs
 		recTime = replay.getMaxTime ();
-		/*
-		if (music != null && recTime==-1) {
-			recTime=music.clip.length;
-		}
-		*/
+		print ("rec time " + recTime);
+
 
 
 	}
 
-	public void setBodys(int id){
+	public void setBodys(){
 
-		Component[] children = target[id].GetComponentsInChildren<Component> ();
+		Component[] children = target.GetComponentsInChildren<Component> ();
 		bodys = new GameObject[bName.Length];
 		for(int i=0;i<children.Length;i++){
 			for(int j=0;j<bName.Length;j++){
 				if(children[i].gameObject.name==bName[j]){
 					bodys[j]=children[i].gameObject;
-
-					//print("bodsy "+j+" "+bodys[j]);
 					break;
 				}
 			}
@@ -108,7 +100,6 @@ public class MyRec : MonoBehaviour {
 		}
 		else if(myState==1){
 			guiCount.text = "";
-			//print ("time "+time+" / "+recTime);
 
 			for(int i=0;i<bodys.Length;i++){
 
@@ -142,7 +133,6 @@ public class MyRec : MonoBehaviour {
 			string outName = dtNow.ToString("yyyy_MM_dd_HH_mm_ss")+".dat";
 			print(outName);
 
-			//FileStream f = new FileStream("myLog.txt", FileMode.Create, FileAccess.Write);
 			FileStream f = new FileStream("myRecord/"+outName, FileMode.Create, FileAccess.Write);
 			writer = new StreamWriter(f);
 			writer.WriteLine(charaName);
