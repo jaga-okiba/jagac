@@ -16,10 +16,11 @@ public class MyReplay : MonoBehaviour {
 	public AudioSource music = null;
 	private int frame=0;
 	private int maxFrame = -1;
-	private float maxTime = -1;
 	private int flag=-1;
 	public FieldSet bg;
 	public bool RECORD = false;
+
+	private float maxTime = -1;
 
 	// Use this for initialization
 	void Start () {
@@ -95,7 +96,7 @@ public class MyReplay : MonoBehaviour {
 			}
 
 
-			if(time>20 || time>maxFrame){
+			if(time>maxTime){
 			//if(time>music.clip.length){
 				music.time=0;
 				bg.setPlace();
@@ -109,5 +110,8 @@ public class MyReplay : MonoBehaviour {
 
 		}
 
+	}
+	public float getMaxTime(){
+		return this.maxTime;
 	}
 }

@@ -10,6 +10,19 @@
 	ASS.zipを展開してMoCapとSoundをAssetsに入れる
 
 
+unityKinect_0_11_0
+	時間管理の回りを調整する．
+	MyRecのRecorderのターゲットを調整
+	MyRecでguiCoutのレンダラ―をStartでtrue，rec開始でfalse
+	MyRecのmaxTimeをMyReplayのものを使うようにする．
+
+	MyReplayのmaxTimeをちゃんと使えるようにする．
+		maxFrameでの判定はしない．Sensorの方チェックし，最後の姿勢を維持する．
+
+	Recorderオブジェクトの表示をオフ．
+
+	GUIstartの余計なスクリプト削除
+
 unityKinect_0_10_9(2014 10 4 最新)
 	新キャラ登場
 unityKinect_0_10_8(2014 10 4)

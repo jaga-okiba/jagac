@@ -5,7 +5,7 @@ using System;
 
 public class MyRec : MonoBehaviour {
 	public AudioSource music = null;
-
+	public MyReplay replay;
 
 
 
@@ -36,6 +36,7 @@ public class MyRec : MonoBehaviour {
 	//public GameObject root;
 	
 	void Start () {
+		//guiCount.text=true;
 		this.renderer.material.color = Color.blue;
 
 		string name = PlayerPrefs.GetString("CharaName");
@@ -56,10 +57,13 @@ public class MyRec : MonoBehaviour {
 
 		charaName = name;
 		setBodys (id);
-
+		//music is started by MyRelay.cs
+		recTime = replay.getMaxTime ();
+		/*
 		if (music != null && recTime==-1) {
 			recTime=music.clip.length;
 		}
+		*/
 
 
 	}
@@ -98,10 +102,12 @@ public class MyRec : MonoBehaviour {
 				float count_time = delayTime - time;
 				guiCount.text = "READY " + (int)count_time;
 			}else{
+				guiCount.text = "";
 				rec ();
 			}
 		}
 		else if(myState==1){
+			guiCount.text = "";
 			//print ("time "+time+" / "+recTime);
 
 			for(int i=0;i<bodys.Length;i++){
