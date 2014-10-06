@@ -1,4 +1,6 @@
 ﻿TODO
+	Yanagiya
+
 	プロジェクトの開き方
 	ASS.zipを展開(パスワードはサイボウズにて)してMoCapとSoundをAssetsに入れる
 		(Unity上ですることを推奨)
