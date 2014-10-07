@@ -22,7 +22,7 @@ public class MyReplay : MonoBehaviour {
 	public FieldSet bg;
 	public bool RECORD = false;
 
-	private float maxTime = 30;
+	private float maxTime = 10;
 
 	private  GameObject[] modelList ;
 
@@ -80,7 +80,7 @@ public class MyReplay : MonoBehaviour {
 		flag = 1;
 		print ("END LOAD");
 		music.Play ();
-		if (maxTime == -1 || maxTime<music.clip.length) {
+		if (maxTime == -1 || maxTime>music.clip.length) {
 			maxTime = music.clip.length;
 		}
 	}

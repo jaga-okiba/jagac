@@ -116,7 +116,8 @@ public class MyRec : MonoBehaviour {
 			
 			if(time>=recTime){
 				rec();
-				Application.LoadLevel("LetsReplay");
+				//Application.LoadLevel("LetsReplay");
+				Application.LoadLevel("InterReplay");
 			}
 
 		}

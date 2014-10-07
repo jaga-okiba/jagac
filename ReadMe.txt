@@ -1,6 +1,4 @@
 ﻿TODO
-	Yanagiya
-
 	プロジェクトの開き方
 	ASS.zipを展開(パスワードはサイボウズにて)してMoCapとSoundをAssetsに入れる
 		(Unity上ですることを推奨)
@@ -20,6 +18,13 @@
 				modelListをTurnTableの下へ．
 				modelListのサイズがなぜか [0.1, 0.1, 0.1]になっているので，
 				すべて0.2にしてサイズを合わせる．
+
+unityKinect_0_11_3
+	Load画面用のシーンを作ってみる
+
+unityKinect_0_11_2
+	キャラ選択のIDのずれを修正
+	切り替えの乱数を調整
 
 unityKinect_0_11_1
 	キャラ追加が容易になるように調整

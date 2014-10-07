@@ -14,7 +14,7 @@ public class Controller : MonoBehaviour {
 
 	private int charID = 0;
 	private int charaNUM;
-	public string sceneName;
+	private string sceneName = "InterDance";
 	// Use this for initialization
 	void Start () {
 		//get model list
@@ -33,7 +33,7 @@ public class Controller : MonoBehaviour {
 		float r = 100f;
 		Vector3 center = turntable.transform.position;
 		for (int i = 0; i < character.Length; i++) {
-			float ag = angle * (float)i;
+			float ag = -angle * (float)i;
 			//print ("ag "+ag);
 			float x = r * Mathf.Cos (Mathf.PI / 180.0f * ag);
 			float y = 0.0f;
