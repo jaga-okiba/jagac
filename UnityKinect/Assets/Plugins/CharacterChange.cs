@@ -11,7 +11,6 @@ public class CharacterChange : MonoBehaviour {
 	public GameObject[] character;
 	private int charID = 0;
 	private int charaNUM;
-	public string sceneName;
 	// Use this for initialization
 	void Start () {
 		charaNUM = character.Length;
@@ -19,7 +18,7 @@ public class CharacterChange : MonoBehaviour {
 		float r = 100f;
 		Vector3 center = this.transform.position;
 		for (int i = 0; i < character.Length; i++) {
-			float ag = angle * i;
+			float ag = -angle * i;
 			print (ag);
 			float x = r * Mathf.Cos (Mathf.PI / 180.0f * ag);
 			float y = r * Mathf.Sin (Mathf.PI / 180.0f * ag);
@@ -33,7 +32,7 @@ public class CharacterChange : MonoBehaviour {
 
 	public void ChangeScene(){
 		PlayerPrefs.SetString("CharaName", getCharacterName());
-		Application.LoadLevel(sceneName);
+		Application.LoadLevel("InterDance");
 	}
 
 
@@ -64,7 +63,7 @@ public class CharacterChange : MonoBehaviour {
 			// カウントが90になるまで回転する(90℃回転)
 			if(cnt < (int)angle){
 				cnt++;
-				this.transform.Rotate(0, 0, -rot);
+				this.transform.Rotate(0, 0, rot);
 			} else {
 
 				/* 回転方式の変更により一旦コメントアウト

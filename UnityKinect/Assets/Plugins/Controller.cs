@@ -14,7 +14,7 @@ public class Controller : MonoBehaviour {
 
 	private int charID = 0;
 	private int charaNUM;
-	private string sceneName = "InterDance";
+	//public string sceneName;
 	// Use this for initialization
 	void Start () {
 		//get model list
@@ -49,7 +49,7 @@ public class Controller : MonoBehaviour {
 	
 	public void ChangeScene(){
 		PlayerPrefs.SetString("CharaName", getCharacterName());
-		Application.LoadLevel(sceneName);
+		Application.LoadLevel("InterDance");
 	}
 	
 	

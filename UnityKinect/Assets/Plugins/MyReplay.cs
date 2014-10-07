@@ -22,7 +22,7 @@ public class MyReplay : MonoBehaviour {
 	public FieldSet bg;
 	public bool RECORD = false;
 
-	private float maxTime = 10;
+	private float maxTime = 30;
 
 	private  GameObject[] modelList ;
 
