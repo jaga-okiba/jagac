@@ -19,6 +19,14 @@
 				modelListのサイズがなぜか [0.1, 0.1, 0.1]になっているので，
 				すべて0.2にしてサイズを合わせる．
 
+unityKinect_0_11_6
+	(全シーン)
+	影の濃さを半分に調整
+	師匠のマテリアルを自己発光するように修正
+	FieldSet.csにDirectional lightに関する動作を追加
+	(LetsDanceシーンのみ)
+	試験的にDancers > kakumaDance01(師匠)の子にSubCameraを設置
+
 unityKinect_0_11_5
 	LetsDanceのキャラクタの小さいのを修正
 	また，音楽が再生されないのを修正
