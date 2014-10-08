@@ -19,6 +19,22 @@
 				modelListのサイズがなぜか [0.1, 0.1, 0.1]になっているので，
 				すべて0.2にしてサイズを合わせる．
 
+unityKinect_0_11_11
+	キャラクタの向き調整(途中)
+
+unityKinect_0_11_10
+	看板
+
+unityKinect_0_11_9
+	ステージの更新
+	プレイ画面のサブカメラの配置
+unityKinect_0_11_8
+	サウンド再生を実装
+
+unityKinect_0_11_7
+	かまくらupdate
+	LetsDanceのカメラの設定，キャラクタサイズ
+
 unityKinect_0_11_6
 	(全シーン)
 	影の濃さを半分に調整

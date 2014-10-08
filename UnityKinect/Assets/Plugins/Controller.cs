@@ -9,11 +9,14 @@ public class Controller : MonoBehaviour {
 	public static bool reverse = false;
 	public bool reset = false;
 	private float angle = 72.0f;
-
+	
 	private GameObject[] character;
-
+	
 	private int charID = 0;
 	private int charaNUM;
+	
+	public AudioClip changeSound;
+	private AudioSource changeSoundSource;
 	//public string sceneName;
 	// Use this for initialization
 	void Start () {
@@ -26,8 +29,8 @@ public class Controller : MonoBehaviour {
 			character[i].SetActive(true);
 			print(character[i].name);
 		}
-
-
+		
+		
 		charaNUM = character.Length;
 		angle = 360.0f / (float)character.Length;
 		float r = 100f;
@@ -42,6 +45,9 @@ public class Controller : MonoBehaviour {
 			//character[i].transform.Rotate(new Vector3(0, 0, ag));
 			//print(i+" -- "+x+","+y+","+z);
 		}
+		
+		
+		changeSoundSource = gameObject.GetComponent<AudioSource> ();
 	}
 	public int getCharaID(){
 		return charID;
@@ -69,6 +75,7 @@ public class Controller : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter(Collision col){
+		changeSoundSource.PlayOneShot (changeSound);
 		Turn_Right();
 	}
 	
