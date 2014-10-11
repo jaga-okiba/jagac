@@ -107,7 +107,7 @@ public class MyRec : MonoBehaviour {
 				Vector3 rot = bodys[i].transform.rotation.eulerAngles;
 				string name = bodys[i].name;
 
-				string str =name+" " + pos[0]+" "+pos[1]+" "+pos[2]+" "+rot[0]+" "+rot[1]+" "+rot[2];
+				string str =name+" " +time+" "+pos[0]+" "+pos[1]+" "+pos[2]+" "+rot[0]+" "+rot[1]+" "+rot[2];
 				
 			
 				writer.WriteLine(str);
