@@ -28,9 +28,13 @@ public class MyRec : MonoBehaviour {
 		"LLegRoot","LShin","LRootFoot","LToe",
 		"RLegRoot","RShin","RRootFoot","RToe"
 	};
-	public GameObject target;
+	private GameObject target;
+	//private GameObject kinect;
 
 	void Start () {
+		//kinect = GameObject.Find ("Kinect_Prefab");
+		//kinect.SetActive (true);
+
 		this.renderer.material.color = Color.blue;
 
 		string name = PlayerPrefs.GetString("CharaName");
@@ -107,7 +111,7 @@ public class MyRec : MonoBehaviour {
 				Vector3 rot = bodys[i].transform.rotation.eulerAngles;
 				string name = bodys[i].name;
 
-				string str =name+" " + pos[0]+" "+pos[1]+" "+pos[2]+" "+rot[0]+" "+rot[1]+" "+rot[2];
+				string str =name+" " +time+" "+pos[0]+" "+pos[1]+" "+pos[2]+" "+rot[0]+" "+rot[1]+" "+rot[2];
 				
 			
 				writer.WriteLine(str);
@@ -116,6 +120,7 @@ public class MyRec : MonoBehaviour {
 			
 			if(time>=recTime){
 				rec();
+				//kinect.SetActive (false);
 				Application.LoadLevel("InterReplay");
 			}
 

@@ -19,6 +19,26 @@
 				modelListのサイズがなぜか [0.1, 0.1, 0.1]になっているので，
 				すべて0.2にしてサイズを合わせる．
 
+
+unityKinect_0_12_2
+	Replayにスタッフちゃんとふきだし追加.
+
+unityKinect_0_12_1
+	ReplayにBGが割り当てらえていないのを修正．
+	FieldSetの回転をグローバル座標指定に変更．
+
+	// kinect_prefabのON/OFFを制御してエラーでないようにしたかったけど，
+	// なんかうまくいかないので，コメントアウト
+	//CharaSelectのkinectをControlerの中でON/OFFする．
+	//LetsDanceのkinectをMyRecの中でON/OFFする．
+
+
+unityKinect_0_12_0
+	キネクトの保存時に曲の時刻を打刻．
+	時刻に合わせて再生．
+
+		動作未チェック
+
 unityKinect_0_11_11
 	キャラクタの向き調整(途中)
 

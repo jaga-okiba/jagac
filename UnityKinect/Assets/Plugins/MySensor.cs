@@ -6,7 +6,10 @@ using System.Collections.Generic;
 public class MySensor : MonoBehaviour {
 	private List<Vector3> pos = new List<Vector3>();
 	private List<Vector3> rot = new List<Vector3>();
-	private int maxTime=0;
+	private List<float> time = new List<float>();
+
+
+	private int maxFrame=0;
 	private string partName;
 
 	public bool checkName(string name){
@@ -20,47 +23,14 @@ public class MySensor : MonoBehaviour {
 		partName = n;
 	}
 
-	/*
-	private GameObject target;
-	private int time;
-
-	public bool checkName(string name){
-		bool result = false;
-		if(target.name==name){
-			result = true;
-		}
-		return result;
-	}
-	
-	public int next(){
-		time = (time + 1) % maxTime;
-		return time;
-	}
-	public void setPos(){
-		if (maxTime > 0) {
-			target.transform.position = pos [time];
-			target.transform.eulerAngles = rot [time];
-		}
-	}
-	*/
-
-	public void addData(Vector3 p,Vector3 r){
+	public void addData(float t,Vector3 p,Vector3 r){
+		time.Add (t);
 		pos.Add (p);
 		rot.Add (r);
-		maxTime++;
+		maxFrame++;
 	}
-	public Vector3 getPos(int f){
-		int frame = f;
-		//print ("hoge " + pos.Count + "  " + f);
-
-
-		if (pos.Count < f) {
-			frame = pos.Count - 2;
-		}
-		if (frame < 0) {
-			frame = 0;
-		}
-		//print ("frame " + frame+"/"+pos.Count);
+	public Vector3 getPos(float f){
+		int frame = time2frame (f);
 		Vector3 result = new Vector3 (0f, 0f, 0f);
 		try{
 			result =pos[frame];
@@ -68,22 +38,33 @@ public class MySensor : MonoBehaviour {
 
 		return result;
 	}
-	public Vector3 getRot(int f){
-			int frame = f;
-			if (pos.Count < f) {
-				frame = pos.Count - 2;
-			}
-			if (frame < 0) {
-				frame = 0;
-			}
-			Vector3 result = new Vector3 (0f, 0f, 0f);
-			try{
-				result =rot[frame];
-			}catch(Exception e){}
-			
-			return result;
+	public Vector3 getRot(float f){
+		int frame = time2frame (f);
+		Vector3 result = new Vector3 (0f, 0f, 0f);
+		try{
+			result =rot[frame];
+		}catch(Exception e){}
+
+		return result;
 	}
-	public int getMaxTime(){
-		return maxTime;
+	public int time2frame(float t){
+		int result = 0;
+		if (t < time [0]) {
+			result = 0;
+		} else if (t > time [time.Count - 1]) {
+			result = pos.Count - 1;
+		} else {
+			for(int i=1;i<time.Count;i++){
+				if( time[i-1]<t && t<time[i]){
+					result = i;
+					break;
+				}
+			}
+
+		}
+		return result;
+	}
+	public int getMaxFrame(){
+		return maxFrame;
 	}
 }
