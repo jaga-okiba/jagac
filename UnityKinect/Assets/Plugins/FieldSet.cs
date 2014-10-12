@@ -18,7 +18,7 @@ public class FieldSet : MonoBehaviour {
 		{60, 300, 230} }; 
 
 	private int id = 0;
-	private int temp;
+	private int temp=0;
 	
 	// Use this for initialization
 	void Start () {
@@ -37,8 +37,10 @@ public class FieldSet : MonoBehaviour {
 			id = (int)Random.Range (0, 4);
 		}
 		if (id != temp) {
+			print("id "+id);
 			this.transform.position = new Vector3 (form [id, 0], -1, form [id, 1]);
-			this.transform.Rotate (new Vector3 (0, form [id, 2] -form [temp, 2] , 0));
+			this.transform.rotation=Quaternion.Euler(new Vector3 (0, form [id, 2], 0));
+			//Rotate (new Vector3 (0, form [id, 2] -form [temp, 2] , 0));
 			GameObject.Find ("Directional light").transform.rotation = Quaternion.Euler(dLight[id, 0], dLight[id, 1], dLight[id, 2]);
 		}
 		

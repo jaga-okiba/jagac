@@ -6,7 +6,7 @@ public class MyKinectData : MonoBehaviour {
 	private MySensor[] sensor;
 	private string modelName;
 	public GameObject body;
-	private int frame;
+	//private int frame;
 	private int maxFrame;
 	public static string[] bName = {
 		"SpineRoot","Spine2","HeadRoot","Head",
@@ -25,10 +25,11 @@ public class MyKinectData : MonoBehaviour {
 	public GameObject getBody(){
 		return body;
 	}
-
+	/*
 	public void setFrame(int f){
 		frame = f;
 	}
+	*/
 
 	public void load(string fname,GameObject[] modelList){
 		sensor = new MySensor[bName.Length];
@@ -62,19 +63,19 @@ public class MyKinectData : MonoBehaviour {
 						print (fname+" "+lineNum+"  "+str);
 					}
 					else{
-
-						float tx =  float.Parse(line[1]);
-						float ty =  float.Parse(line[2]);
-						float tz =  float.Parse(line[3]);
+						float time = float.Parse(line[1]);
+						float tx =  float.Parse(line[2]);
+						float ty =  float.Parse(line[3]);
+						float tz =  float.Parse(line[4]);
 						Vector3 p = new Vector3(tx,ty,tz);
 						
-						float rx =  float.Parse(line[4]);
-						float ry =  float.Parse(line[5]);
-						float rz =  float.Parse(line[6]);
+						float rx =  float.Parse(line[5]);
+						float ry =  float.Parse(line[6]);
+						float rz =  float.Parse(line[7]);
 						Vector3 r = new Vector3(rx,ry,rz);
 
 						int id = getBodyPartID(line[0]);
-						sensor[id].addData(p,r);
+						sensor[id].addData(time,p,r);
 					}
 				}
 				lineNum++;
@@ -82,21 +83,29 @@ public class MyKinectData : MonoBehaviour {
 
 			}
 
-			maxFrame = sensor[0].getMaxTime();
+
+			maxFrame = sensor[0].getMaxFrame();
 			for(int i=1;i<sensor.Length;i++){
-				if(maxFrame<sensor[i].getMaxTime()){
-					maxFrame = sensor[i].getMaxTime();
+				if(maxFrame<sensor[i].getMaxFrame()){
+					maxFrame = sensor[i].getMaxFrame();
 				}
 			}
+
+
+
 
 			//datas.Add (sensor);
 			reader.Close();
 		}
 	
 	}
+
+
 	public int getMaxFrame(){
 		return maxFrame;
 	}
+
+
 	public int getBodyPartID(string n){
 		int id = -1;
 		for(int i=0;i<bName.Length;i++){
@@ -118,8 +127,8 @@ public class MyKinectData : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	}
-	public void run (int f) {
-		setFrame (f);
+	public void run (float sec) {
+		//setFrame (f);
 		if (body != null) {
 
 			Component[] pt = body.GetComponentsInChildren<Component> ();
@@ -129,12 +138,12 @@ public class MyKinectData : MonoBehaviour {
 
 
 				if(id>=0){
-					Vector3 pos = this.sensor[id].getPos (frame);
-					Vector3 rot = this.sensor[id].getRot (frame);
+					Vector3 pos = this.sensor[id].getPos (sec);
+					Vector3 rot = this.sensor[id].getRot (sec);
 
-					//Vector3 hogeRot = new Vector3(0.0f,90.0f,0.0f);
+					//Vector3 pos = this.sensor[id].getPos (frame);
+					//Vector3 rot = this.sensor[id].getRot (frame);
 
-					//pt[i].gameObject.transform.position=pos;
 					pt[i].gameObject.transform.eulerAngles=rot;
 
 					//print (frame+" [pos] "+rot);
