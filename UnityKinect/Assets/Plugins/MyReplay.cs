@@ -16,8 +16,6 @@ public class MyReplay : MonoBehaviour {
 	public int fps = 30;
 	public float mstart=4.5f;
 	public AudioSource music = null;
-	private int frame=0;
-	private int maxFrame = -1;
 	private int flag=-1;
 	public FieldSet bg;
 	public bool RECORD = false;
@@ -62,9 +60,9 @@ public class MyReplay : MonoBehaviour {
 			string fn = files[files.Length-1-i];
 			//print ("file "+fn);
 			datas[i].load(fn,modelList);
-			if(datas[i].getMaxFrame() < maxFrame || maxFrame==-1){
-				maxFrame=datas[i].getMaxFrame();
-			}
+			//if(datas[i].getMaxFrame() < maxFrame || maxFrame==-1){
+			//	maxFrame=datas[i].getMaxFrame();
+			//}
 		}
 
 		for (int i=0; i<fileNum; i++) {
@@ -84,13 +82,15 @@ public class MyReplay : MonoBehaviour {
 			maxTime = music.clip.length;
 		}
 	}
-
+	/*
 	public int getFrameFromSec(float time){
 		float t = time;
 		if(t<0){ t=0; }
 		int frame = ((int)(fps*t));
 		return frame;
 	}
+	*/
+
 	// Update is called once per frame
 	void Update () {
 		if (flag == 1) {
@@ -100,14 +100,14 @@ public class MyReplay : MonoBehaviour {
 			if (music != null) {
 				time = music.time;
 			}
-			frame = getFrameFromSec (time);
+			//frame = getFrameFromSec (time);
 			//print ("frame "+time);
 			for (int i=0; i<fileNum; i++) {
-				datas [i].run (frame);
+				datas [i].run (time);
 			}
 
 
-			if(time>maxTime){
+			if(time>=maxTime){
 			//if(time>music.clip.length){
 				music.time=0;
 				bg.setPlace();
