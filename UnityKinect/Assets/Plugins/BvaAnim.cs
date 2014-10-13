@@ -10,14 +10,11 @@ public class BvaAnim : MonoBehaviour {
 	public string fname="samiNewSoran.vpm";
 	public string setting="map15seg.dat";
 	public Boolean hipMove=true;
-	//public Boolean tpose = true;
 	public float mocapScale=-1.0f;
 	public int fixFrame=-1;
 	public AudioSource music = null;
 	public BvaAnim follow = null;
 
-
-	//[Pulldown("T_POSE","I_POSE","N_POSE")]
 	public string poseType="T_POSE";
 
 	public Boolean upperBodyFlag = true;
@@ -44,16 +41,12 @@ public class BvaAnim : MonoBehaviour {
 	private int loadFlag=-1;
 	// Use this for initialization
 	void Start () {
-		//Application.targetFrameRate = 30;
-
 
 		baseForm = this.transform.rotation;
 		basePos= this.transform.position;
 		if(mocapScale<=0){
 			mocapScale = this.transform.localScale[1];
 		}
-		//print ("baseForm "+baseScale[1]);
-
 
 		for(int i=0;i<names.Length;i++){
 			string n = names[i];

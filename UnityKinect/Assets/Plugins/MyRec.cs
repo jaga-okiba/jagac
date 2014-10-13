@@ -11,12 +11,10 @@ public class MyRec : MonoBehaviour {
 	private float recTime=-1;
 
 	private float time=0;
-	public GUIText guiCount;
-
 
 	private int myState = -1;
 	private StreamWriter writer;
-	private GameObject[] bodys; // = new GameObject[25];
+	private GameObject[] bodys;
 	private string charaName;
 
 
@@ -29,11 +27,8 @@ public class MyRec : MonoBehaviour {
 		"RLegRoot","RShin","RRootFoot","RToe"
 	};
 	private GameObject target;
-	//private GameObject kinect;
 
 	void Start () {
-		//kinect = GameObject.Find ("Kinect_Prefab");
-		//kinect.SetActive (true);
 
 		this.renderer.material.color = Color.blue;
 
@@ -79,8 +74,14 @@ public class MyRec : MonoBehaviour {
 			}
 		}
 
+	}
 
+	public float getTime() {
+		return time;
+	}
 
+	public float getDelay() {
+		return delayTime;
 	}
 	
 	// Update is called once per frame
@@ -96,14 +97,11 @@ public class MyRec : MonoBehaviour {
 		if (myState == -1) {
 			if (time < delayTime) {
 				float count_time = delayTime - time;
-				guiCount.text = "READY " + (int)count_time;
 			}else{
-				guiCount.text = "";
 				rec ();
 			}
 		}
 		else if(myState==1){
-			guiCount.text = "";
 
 			for(int i=0;i<bodys.Length;i++){
 
@@ -120,18 +118,13 @@ public class MyRec : MonoBehaviour {
 			
 			if(time>=recTime){
 				rec();
-				//kinect.SetActive (false);
 				Application.LoadLevel("InterReplay");
 			}
-
 		}
-		
-		
 	}
 	
 	public void rec(){
 		if(myState==-1){
-			guiCount.text = "REC " + (int)time;
 			this.renderer.material.color=Color.red;
 
 			DateTime dtNow = DateTime.Now;

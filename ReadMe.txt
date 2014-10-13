@@ -19,6 +19,47 @@
 				modelListのサイズがなぜか [0.1, 0.1, 0.1]になっているので，
 				すべて0.2にしてサイズを合わせる．
 
+MinaDeBon_1_00_00
+	コメント文の整理
+
+unityKinect_0_12_14
+	キャラ選択時の照明
+	キャラ選択時にこちらを向く
+
+unityKinect_0_12_13
+	スタッフロールの調整
+
+unityKinect_0_12_12
+	スタッフロール
+
+unityKinect_0_12_11
+	カメラワーク
+
+unityKinect_0_12_10
+	位置調整
+
+unityKinect_0_12_9-shibata
+	スタッフロール
+
+unityKinect_0_12_9
+	LetsDanceにカメラワークアニメーションを追加
+
+unityKinect_0_12_8
+	謎のエラーを解消
+
+unityKinect_0_12_7
+	カウントダウンにエフェクトを追加（謎のエラー有）
+
+unityKinect_0_12_6
+	Replay キャラこっち向く
+
+unityKinect_0_12_5
+	ロード画面を張り込む
+nect_0_12_4
+	開始キャラをランダム化
+
+unityKinect_0_12_3
+	CharaSelectシーンの演出を追加
 
 unityKinect_0_12_2
 	Replayにスタッフちゃんとふきだし追加.

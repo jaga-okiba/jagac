@@ -6,7 +6,6 @@ public class MyKinectData : MonoBehaviour {
 	private MySensor[] sensor;
 	private string modelName;
 	public GameObject body;
-	//private int frame;
 	private int maxFrame;
 	public static string[] bName = {
 		"SpineRoot","Spine2","HeadRoot","Head",
@@ -16,21 +15,17 @@ public class MyKinectData : MonoBehaviour {
 		"LLegRoot","LShin","LRootFoot","LToe",
 		"RLegRoot","RShin","RRootFoot","RToe"
 	};
-
+	private float yAngle = 0f;
 
 	// Use this for initialization
 	void Start () {
 	}
-
+	public void setYAngle(float y){
+		yAngle=y;
+	}
 	public GameObject getBody(){
 		return body;
 	}
-	/*
-	public void setFrame(int f){
-		frame = f;
-	}
-	*/
-
 	public void load(string fname,GameObject[] modelList){
 		sensor = new MySensor[bName.Length];
 		for (int i=0; i<bName.Length; i++) {
@@ -82,8 +77,6 @@ public class MyKinectData : MonoBehaviour {
 
 
 			}
-
-
 			maxFrame = sensor[0].getMaxFrame();
 			for(int i=1;i<sensor.Length;i++){
 				if(maxFrame<sensor[i].getMaxFrame()){
@@ -91,20 +84,14 @@ public class MyKinectData : MonoBehaviour {
 				}
 			}
 
-
-
-
-			//datas.Add (sensor);
 			reader.Close();
 		}
 	
 	}
 
-
 	public int getMaxFrame(){
 		return maxFrame;
 	}
-
 
 	public int getBodyPartID(string n){
 		int id = -1;
@@ -117,7 +104,6 @@ public class MyKinectData : MonoBehaviour {
 		return id;
 	}
 
-
 	public void printData(string pname,int frame){
 		int id = getBodyPartID(pname);
 		Vector3 pos = sensor [id].getPos(frame);
@@ -128,25 +114,18 @@ public class MyKinectData : MonoBehaviour {
 	void Update () {
 	}
 	public void run (float sec) {
-		//setFrame (f);
 		if (body != null) {
 
 			Component[] pt = body.GetComponentsInChildren<Component> ();
 			for(int i=0;i<pt.Length;i++){
 				int id = getBodyPartID (pt[i].gameObject.name);
-				//print ("hoge "+id + " "+pt[i].gameObject.name);
-
 
 				if(id>=0){
 					Vector3 pos = this.sensor[id].getPos (sec);
 					Vector3 rot = this.sensor[id].getRot (sec);
 
-					//Vector3 pos = this.sensor[id].getPos (frame);
-					//Vector3 rot = this.sensor[id].getRot (frame);
-
+					rot[1]+=yAngle;
 					pt[i].gameObject.transform.eulerAngles=rot;
-
-					//print (frame+" [pos] "+rot);
 
 				}
 			}

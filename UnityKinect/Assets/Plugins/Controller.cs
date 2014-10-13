@@ -16,13 +16,9 @@ public class Controller : MonoBehaviour {
 	
 	public AudioClip changeSound;
 	private AudioSource changeSoundSource;
-	//private GameObject kinect;
 
-	//public string sceneName;
 	// Use this for initialization
 	void Start () {
-		//kinect = GameObject.Find ("Kinect_Prefab");
-		//kinect.SetActive (true);
 
 		//get model list
 		GameObject modelList = GameObject.Find ("modelList");
@@ -45,10 +41,17 @@ public class Controller : MonoBehaviour {
 			float y = 0.0f;
 			float z = r * Mathf.Sin (Mathf.PI / 180.0f * ag);
 			character[i].transform.position = new Vector3(center.x + x, center.y + y, center.z + z);
+
 		}
 		
 		
 		changeSoundSource = gameObject.GetComponent<AudioSource> ();
+
+		int rand = (int)Random.Range (0, 1000*charaNUM);
+		//print ("rand: " + rand);
+		rand = rand % charaNUM;
+		//print ("rand%charaNUM: " + rand);
+		Turn_Table (rand);
 	}
 	public int getCharaID(){
 		return charID;
@@ -56,8 +59,6 @@ public class Controller : MonoBehaviour {
 	
 	public void ChangeScene(){
 		PlayerPrefs.SetString("CharaName", getCharacterName());
-		//kinect.SetActive (false);
-
 		Application.LoadLevel("InterDance");
 	}
 	
@@ -69,14 +70,28 @@ public class Controller : MonoBehaviour {
 	// 右のキャラに移動
 	public void Turn_Right() {
 		if (cnt == 0) {
-			charID ++;
-			charID=charID%charaNUM;
-			
-			print("ID "+charID);
+			Turn_Id();
 			reverse = true;
 		}
 	}
-	
+
+	public void Turn_Id() {
+		charID ++;
+		charID=charID%charaNUM;
+		character[charID].transform.rotation =Quaternion.Euler( new Vector3(0,225,0));
+
+		//print("ID "+charID);
+	}
+	public void Turn_Table(int num){
+		for (int tc=0; tc<num; tc++) {
+			Turn_Id ();
+			for (int i=0; i<(int)angle; i++) {
+				turntable.transform.Rotate (0, -rot, 0);
+			}
+		}
+	}
+
+
 	void OnCollisionEnter(Collision col){
 		changeSoundSource.PlayOneShot (changeSound);
 		Turn_Right();
