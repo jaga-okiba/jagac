@@ -3,8 +3,8 @@ using System.Collections;
 
 public class StaffRoll : MonoBehaviour {
 
-	private float st = -14f;
-	private float ed =  14f;
+	private float st = -15f;
+	private float ed =  30f;
 	private float sp = 0.03f;
 	
 	// Use this for initialization
