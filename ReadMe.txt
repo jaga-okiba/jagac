@@ -24,6 +24,33 @@ MinaDeBon_1_00_03
 		(SCameraを利用)
 	クレジットの再度貼り直し
 	スタッフロールに大三さん版の角間を追加
+	
+	buildの設定
+	[Resolution]
+	Default Is Full Screen  : 1
+	Default Is Native Resolution : 1
+	Capture Single Screen : 1
+	Display Resolution Dialog : Hidden by Default
+	Use Player Log : 1
+	Resizable Window: 1
+	D3D9 Fullscreen Mode : ExclusiveMode
+	Supported Aspect Rasios
+	4:3   =0
+	5:4   =0
+	16:10   =0
+	16:9    =0
+	Others = 1
+	
+	[Ohter Settings]
+	Rendering
+	Rendering Path : Forward
+	Use Direct3D 11: 0
+	Dynamic Batching :0
+	Optimization
+	Api Compatiblilty Level :  .Net 2.0 subset
+	Optimeze Mesh Data :0
+	※記載無いものは0です
+
 
 MinaDeBon_1_00_02
 	LetsPlayの師匠の向きを正面に
